@@ -15,16 +15,16 @@ public class MainMenuInputController:BaseController
         MousePosition?.Invoke(position);
        
     }
+    public MainMenuInputController()
+    {
+        UpdateManager.SubscribeToUpdate(OnUpdate);
+    }
 
     protected override void OnDispose()
     {
         UpdateManager.UnsubscribeFromUpdate(OnUpdate);
         base.OnDispose();
 
-    }
-    public MainMenuInputController()
-    {
-        UpdateManager.SubscribeToUpdate(OnUpdate);
     }
 }
 

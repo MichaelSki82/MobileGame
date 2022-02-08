@@ -11,7 +11,7 @@ namespace Tools
             _action?.Invoke();
         }
 
-        public void SubscribeOnChange(Action subscriptionAction)
+        public void SubscribeOnChange(Action  subscriptionAction)
         {
             _action += subscriptionAction;
         }
@@ -21,4 +21,5 @@ namespace Tools
             _action -= unsubscriptionAction;
         }
     }
+    
 }
