@@ -1,5 +1,7 @@
 ﻿using Profile;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class MainMenuController : BaseController
 {
@@ -8,14 +10,22 @@ public class MainMenuController : BaseController
     private readonly MainMenuInputController _mainMenuInputController;
     private readonly TrailController _trailController;
     private readonly ProfilePlayer _profilePlayer;
+    private readonly IAnalyticTools _analytics;
+    private readonly IAdsShower _ads;
+    private readonly IShop _shop;
     private readonly MainMenuView _view;
-    
 
-    public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
+
+    public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer,IAnalyticTools analytics, IAdsShower ads, IShop shop)
     {
         _profilePlayer = profilePlayer;
+        _analytics = analytics;
+        _ads = ads;
+        _shop = shop;
+
+       // profilePlayer.SetupText(text);
         _view = LoadView(placeForUi);
-        _view.Init(StartGame);
+        _view.Init(StartGame, Buy, _profilePlayer.Gold);
         _mainMenuInputController = new MainMenuInputController();
         var trailView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewTrailPath)).GetComponent<TrailRendererView>();
         _trailController = new TrailController(trailView);
@@ -33,7 +43,18 @@ public class MainMenuController : BaseController
 
     private void StartGame()
     {
+        _ads.ShowInterstitial();
+        _analytics.SendMessage("Start_game", new Dictionary<string, object>());
         _profilePlayer.CurrentState.Value = GameState.Game;
+
+    }
+
+    protected override void OnDispose()
+    {
+        _mainMenuInputController.MousePosition -= _trailController.SetPosition;
+        _mainMenuInputController?.Dispose();
+        _trailController?.Dispose();
+        base.OnDispose();
     }
 }
 

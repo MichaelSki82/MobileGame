@@ -17,6 +17,11 @@ public class TrailController:BaseController
         _trailView.SetPosition(position);
     }
 
-   
+    protected override void OnDispose()
+    {
+        //GameObject.Destroy(_trailView.gameObject);
+        base.OnDispose();
+
+    }
 
 }

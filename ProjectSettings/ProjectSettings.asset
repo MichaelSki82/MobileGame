@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: SMITandKo
   productName: racingGame
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -42,7 +42,9 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 0}
+  - logo: {fileID: 8051579698515443948, guid: a9c136f9dcfd3954fa0f3fab6260607f, type: 3}
+    duration: 2
+  - logo: {fileID: 21300000, guid: bc15c6ea9b0124465b164fd3e89c578d, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -258,8 +260,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
-  AndroidKeystoreName: '{inproject}: user.keystore'
-  AndroidKeyaliasName: secondwork
+  AndroidKeystoreName: '{inproject}: userNew.keystore'
+  AndroidKeyaliasName: 111volgcity
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
@@ -675,7 +677,8 @@ PlayerSettings:
   ps5SharedBinaryContentLabels: []
   ps5SharedBinarySystemFolders: []
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 0}
+  splashScreenBackgroundSourceLandscape: {fileID: -5600206312213581617, guid: 02caf2529e444a14ab5eae5fafab7fd4,
+    type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
@@ -787,10 +790,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 08dfb37b-2ae3-47c4-8bb8-34e0f007f1de
+  cloudProjectId: 1e96160e-401e-4194-87aa-1ae1cd83d6fd
   framebufferDepthMemorylessMode: 0
   projectName: racingGame
-  organizationId: krebl
+  organizationId: michael82ca
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
