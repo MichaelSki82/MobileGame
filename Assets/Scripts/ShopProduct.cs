@@ -7,5 +7,5 @@ using System;
     {
         public string Id ;
         public ProductType CurrentProductType;
-        public ResourceModification ResourceModification;
+        //public ResourceModification ResourceModification;
     }

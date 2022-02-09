@@ -7,11 +7,11 @@ using Tools;
         void Buy(string id);
         string GetCost(string productID);
         void RestorePurchase();
-        IReadOnlySubscriptionActionT<string> OnSuccessPurchase { get; }
+        //IReadOnlySubscriptionActionT<string> OnSuccessPurchase { get; }
 
-
+        IReadOnlySubscriptionAction OnSuccessPurchase { get; }
     //event Action<PurchaseInfo> OnSuccessPurchase;
-        IReadOnlySubscriptionAction OnFailedPurchase { get; }
+    IReadOnlySubscriptionAction OnFailedPurchase { get; }
 
     }
 

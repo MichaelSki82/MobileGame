@@ -1,4 +1,5 @@
 ﻿using Profile;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class Root : MonoBehaviour
     private IAnalyticTools _analyticsTools;
     [SerializeField] private ShopTools _shop;
 
-    [SerializeField] private Text _countCoins;
+   // [SerializeField] private Text _countCoins;
     private MainController _mainController;
 
     private void Awake()
@@ -19,7 +20,7 @@ public class Root : MonoBehaviour
         var profilePlayer = new ProfilePlayer(15f);
         _analyticsTools = new UnityAnalyticTools();
         profilePlayer.CurrentState.Value = GameState.Start;
-        _mainController = new MainController(_placeForUi, profilePlayer, _analyticsTools, _ads);
+        _mainController = new MainController(_placeForUi, profilePlayer, _analyticsTools, _ads);//, _shop);
     }
 
     protected void OnDestroy()

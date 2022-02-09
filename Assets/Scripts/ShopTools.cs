@@ -10,15 +10,16 @@ using UnityEngine.Purchasing.Security;
         private IExtensionProvider _extensionProvider;
         private bool _isInitialized;
 
-        private readonly SubscriptionActionT<string> _onSuccessPurchase;
-
-        private readonly SubscriptionAction _onFailedPurchase;
+        //private readonly SubscriptionActionT<string> _onSuccessPurchase;
+        private readonly SubscriptionAction _onSuccessPurchase;
+         private readonly SubscriptionAction _onFailedPurchase;
 
         
         public ShopTools(List<ShopProduct> products)
         {
-            _onSuccessPurchase = new SubscriptionActionT<string>();
-            _onFailedPurchase = new SubscriptionAction();
+           // _onSuccessPurchase = new SubscriptionActionT<string>();
+            _onSuccessPurchase = new SubscriptionAction();
+        _onFailedPurchase = new SubscriptionAction();
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
             foreach (ShopProduct product in products)
@@ -28,7 +29,8 @@ using UnityEngine.Purchasing.Security;
             UnityPurchasing.Initialize(this, builder);
         }
 
-    public IReadOnlySubscriptionActionT<string> OnSuccessPurchase => _onSuccessPurchase;
+    //public IReadOnlySubscriptionActionT<string> OnSuccessPurchase => _onSuccessPurchase;
+    public IReadOnlySubscriptionAction OnSuccessPurchase => _onSuccessPurchase;
     //public event Action<PurchaseInfo> OnSuccessPurchase;
     public IReadOnlySubscriptionAction OnFailedPurchase => _onFailedPurchase;
 
@@ -66,7 +68,7 @@ using UnityEngine.Purchasing.Security;
             }
 #endif
         if (validPurchase)
-            _onSuccessPurchase.Invoke(purchaseEvent.purchasedProduct.definition.id);
+            _onSuccessPurchase.Invoke();// purchaseEvent.purchasedProduct.definition.id);
             //_onFailedPurchase?.Invoke();
                 return PurchaseProcessingResult.Complete;
         }

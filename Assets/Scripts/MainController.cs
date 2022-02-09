@@ -11,19 +11,19 @@ public class MainController : BaseController
     private readonly IAnalyticTools _analyticsTools;
     private readonly IAdsShower _ads;
     private readonly IShop _shop;
-    private readonly PurchaseProcessor _purchaseProcessor;
+    //private readonly PurchaseProcessor _purchaseProcessor;
 
 
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer, IAnalyticTools analyticTools, IAdsShower ads, IShop shop, List<ShopProduct> products)
+    public MainController(Transform placeForUi, ProfilePlayer profilePlayer, IAnalyticTools analyticTools, IAdsShower ads)// IShop shop, List<ShopProduct> products)
     {
         _profilePlayer = profilePlayer;
         _placeForUi = placeForUi;
         _analyticsTools = analyticTools;
         _ads = ads;
 
-        _shop = shop;
-        _purchaseProcessor = new PurchaseProcessor(shop, profilePlayer, products);
-        AddController(_purchaseProcessor);
+        //_shop = shop;
+        //_purchaseProcessor = new PurchaseProcessor(shop, profilePlayer, products);
+        //AddController(_purchaseProcessor);
 
         OnChangeGameState(_profilePlayer.CurrentState.Value);
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Events;
 
 public class MainMenuController : BaseController
 {
@@ -12,20 +13,20 @@ public class MainMenuController : BaseController
     private readonly ProfilePlayer _profilePlayer;
     private readonly IAnalyticTools _analytics;
     private readonly IAdsShower _ads;
-    private readonly IShop _shop;
+    //private readonly IShop _shop;
     private readonly MainMenuView _view;
 
 
-    public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer,IAnalyticTools analytics, IAdsShower ads, IShop shop)
+    public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer,IAnalyticTools analytics, IAdsShower ads)
     {
         _profilePlayer = profilePlayer;
         _analytics = analytics;
         _ads = ads;
-        _shop = shop;
+        //_shop = shop;
 
        // profilePlayer.SetupText(text);
         _view = LoadView(placeForUi);
-        _view.Init(StartGame, Buy, _profilePlayer.Gold);
+        _view.Init(StartGame);// new UnityAction(()=>_shop.Buy("com.SMITandKo.racingGame.goldPack500")), _profilePlayer.Gold);
         _mainMenuInputController = new MainMenuInputController();
         var trailView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewTrailPath)).GetComponent<TrailRendererView>();
         _trailController = new TrailController(trailView);
