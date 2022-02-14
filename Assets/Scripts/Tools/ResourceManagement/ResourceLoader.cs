@@ -11,4 +11,11 @@ public static class ResourceLoader
     {
         return Resources.Load<T>(path.PathResource);
     }
+
+    public static T LoadAndInstantiateView<T>(ResourcePath path, Transform uiRoot ) where T: Component
+    {
+        var prefab = Resources.Load<GameObject>(path.PathResource);
+        var go = GameObject.Instantiate(prefab, uiRoot);
+        return go.GetComponent<T>();
+    }
 } 

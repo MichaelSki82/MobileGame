@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class MainController : BaseController
 {
+    private MainMenuController _mainMenuController;
+    private ShedController _shedController;
+    private GameController _gameController;
+    private InventoryController _inventoryController;
+    private readonly Transform _placeForUi;
+    private readonly ProfilePlayer _profilePlayer;
+    private readonly List<ItemConfig> _itemsConfig;
+    private readonly IReadOnlyList<UpgradeItemConfig> _upgradeItems;
+    private readonly IReadOnlyList<AbilityItemConfig> _abilityItems;
+
     public MainController(Transform placeForUi, ProfilePlayer profilePlayer, 
         List<ItemConfig> itemsConfig, IReadOnlyList<UpgradeItemConfig> upgradeItems,
         IReadOnlyList<AbilityItemConfig> abilityItems)
@@ -18,15 +28,6 @@ public class MainController : BaseController
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
     }
 
-    private MainMenuController _mainMenuController;
-    private ShedController _shedController;
-    private GameController _gameController;
-    private InventoryController _inventoryController;
-    private readonly Transform _placeForUi;
-    private readonly ProfilePlayer _profilePlayer;
-    private readonly List<ItemConfig> _itemsConfig;
-    private readonly IReadOnlyList<UpgradeItemConfig> _upgradeItems;
-    private readonly IReadOnlyList<AbilityItemConfig> _abilityItems;
 
     protected override void OnDispose()
     {
@@ -52,7 +53,7 @@ public class MainController : BaseController
                 var inventoryModel = new InventoryModel();
                 _inventoryController = new InventoryController(_itemsConfig, inventoryModel);
                 _inventoryController.ShowInventory();
-                _gameController = new GameController(_profilePlayer, _abilityItems, inventoryModel);
+                _gameController = new GameController(_profilePlayer, _abilityItems, inventoryModel, _placeForUi);
                 _mainMenuController?.Dispose();
                 break;
             default:

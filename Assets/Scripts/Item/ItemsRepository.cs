@@ -27,7 +27,7 @@ public class ItemsRepository : BaseController, IItemsRepository
         }
     }
 
-    private IItem CreateItem(ItemConfig itemConfig)
+    private IItem CreateItem(ItemConfig itemConfig)//фабричный метод
     {
         return new Item 
         { 

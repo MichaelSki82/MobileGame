@@ -13,6 +13,7 @@ public class MainMenuController : BaseController
     {
         _profilePlayer = profilePlayer;
         _view = LoadView(placeForUi);
+        AddGameObjects(_view.gameObject);
         _view.Init(StartGame);
     }
     

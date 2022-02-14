@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Tools;
+using UnityEngine;
 
 public class GameController : BaseController
 {
-    public GameController(ProfilePlayer profilePlayer, IReadOnlyList<AbilityItemConfig> configs, InventoryModel inventoryModel)
+    public GameController(ProfilePlayer profilePlayer, IReadOnlyList<AbilityItemConfig> configs, InventoryModel inventoryModel, Transform uiRoot)
     {
         var leftMoveDiff = new SubscriptionProperty<float>();
         var rightMoveDiff = new SubscriptionProperty<float>();
@@ -18,8 +19,13 @@ public class GameController : BaseController
         AddController(carController);
 
         var abilityRepository = new AbilityRepository(configs);
-        var abilitiesController = new AbilitiesController(carController, inventoryModel, abilityRepository,
-            new AbilitiesCollectionViewStub());
+        AbilitiesView abilityView =
+            ResourceLoader.LoadAndInstantiateView<AbilitiesView>(
+                new ResourcePath() { PathResource = "Prefabs/AbilitiesView" }, uiRoot);
+
+        
+
+        var abilitiesController = new AbilitiesController(carController, inventoryModel, abilityRepository, abilityView);
         AddController(abilitiesController);
 
     }

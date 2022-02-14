@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ShedController : BaseController, IShedController
+public class ShedController : BaseController, IShedController//гараж
 {
     private readonly IReadOnlyList<UpgradeItemConfig> _upgradeItems;
     private readonly Car _car;
