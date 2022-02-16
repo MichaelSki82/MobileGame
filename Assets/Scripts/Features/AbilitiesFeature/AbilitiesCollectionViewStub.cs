@@ -13,4 +13,14 @@ public class AbilitiesCollectionViewStub : IAbilityCollectionView
             UseRequested?.Invoke(this, item);
         }
     }
+
+    public void Hide()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void Show()
+    {
+        //throw new NotImplementedException();
+    }
 }

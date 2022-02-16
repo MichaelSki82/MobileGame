@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Tools;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class ItemsRepository : BaseController, IItemsRepository
+public class ItemsRepository : BaseController, IRepository<int, IItem>
 {
-    public IReadOnlyDictionary<int, IItem> Items => _itemsMapById;
+    public IReadOnlyDictionary<int, IItem> Content => _itemsMapById;
 
     private Dictionary<int, IItem> _itemsMapById = new Dictionary<int, IItem>();
 
@@ -27,12 +32,12 @@ public class ItemsRepository : BaseController, IItemsRepository
         }
     }
 
-    private IItem CreateItem(ItemConfig itemConfig)//фабричный метод
+    private IItem CreateItem(ItemConfig itemConfig)
     {
-        return new Item 
-        { 
-            Id = itemConfig.Id, 
-            Info = new ItemInfo { Title = itemConfig.Title } 
+        return new Item
+        {
+            Id = itemConfig.Id,
+            Info = new ItemInfo { Title = itemConfig.Title }
         };
     }
 }

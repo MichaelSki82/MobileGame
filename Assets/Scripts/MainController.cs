@@ -1,5 +1,6 @@
 ﻿using Profile;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MainController : BaseController
@@ -15,15 +16,19 @@ public class MainController : BaseController
     private readonly IReadOnlyList<AbilityItemConfig> _abilityItems;
 
     public MainController(Transform placeForUi, ProfilePlayer profilePlayer, 
-        List<ItemConfig> itemsConfig, IReadOnlyList<UpgradeItemConfig> upgradeItems,
+        IReadOnlyList<UpgradeItemConfig> upgradeItems,
         IReadOnlyList<AbilityItemConfig> abilityItems)
     {
         _profilePlayer = profilePlayer;
         _placeForUi = placeForUi;
-        _itemsConfig = itemsConfig;
+        
         _upgradeItems = upgradeItems;
         _abilityItems = abilityItems;
 
+        var itemsSource =
+            ResourceLoader.LoadDataSource<ItemConfig>(new ResourcePath()
+            { PathResource = "Data/ItemsSource" });
+        _itemsConfig = itemsSource.Content.ToList();
         OnChangeGameState(_profilePlayer.CurrentState.Value);
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
     }

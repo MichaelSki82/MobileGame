@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using UI;
 
 public interface IAbilityCollectionView:IView
 {
@@ -10,8 +10,3 @@ public interface IAbilityCollectionView:IView
 
 
 
-
-public interface IView
-{
-
-}
