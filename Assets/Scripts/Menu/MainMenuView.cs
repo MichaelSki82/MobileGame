@@ -1,0 +1,54 @@
+﻿using UI;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using DG.Tweening;
+
+
+
+public class MainMenuView : MonoBehaviour, IView
+{
+    [SerializeField] private Button _buttonStart;
+    [SerializeField] private RectTransform _panelMenu;
+    [SerializeField] private Button _buttonRewards;
+    [SerializeField] private Button _buttonExit;
+    private float _durationPanel= 3f;
+    private float _durationButton = 6f;
+    private float  _endValuePanel = 0f;
+    private float _endValueRewards = 370f;
+    private float _endValueExit = 175f;
+    private float _endValueStart = 240f;
+
+    
+
+    private void Start()
+    {
+                
+        _panelMenu.DOAnchorPosX(_endValuePanel, _durationPanel);
+        _buttonRewards.transform.DOMoveX(_endValueRewards, _durationButton);
+        _buttonExit.transform.DOMoveY(_endValueExit, _durationButton);
+        _buttonStart.transform.DOMoveY(_endValueStart, _durationButton);
+
+    }
+
+    public void Hide()
+    {
+        
+    }
+
+    public void Init(UnityAction startGame)
+    {
+        _buttonStart.onClick.AddListener(startGame);
+    }
+
+    public void Show()
+    {
+        
+    }
+
+    protected void OnDestroy()
+    {
+        _buttonStart.onClick.RemoveAllListeners();
+    }
+}
