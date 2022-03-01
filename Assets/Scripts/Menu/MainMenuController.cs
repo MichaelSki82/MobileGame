@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Profile;
 using UnityEngine;
 using UnityEngine.Advertisements;
@@ -14,9 +15,14 @@ public class MainMenuController : BaseController
         _profilePlayer = profilePlayer;
         _view = LoadView(placeForUi);
         AddGameObjects(_view.gameObject);
-        _view.Init(StartGame);
+        _view.Init(StartGame, OpenRewards);
     }
-    
+
+    private void OpenRewards()
+    {
+        _profilePlayer.CurrentState.Value = GameState.Rewards;
+    }
+
     private MainMenuView LoadView(Transform placeForUi)
     {
         //var objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUi, false);

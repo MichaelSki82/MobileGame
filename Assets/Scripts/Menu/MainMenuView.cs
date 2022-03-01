@@ -16,7 +16,7 @@ public class MainMenuView : MonoBehaviour, IView
     private float _durationPanel= 3f;
     private float _durationButton = 6f;
     private float  _endValuePanel = 0f;
-    private float _endValueRewards = 370f;
+    private float _endValueRewards = 368f;
     private float _endValueExit = 175f;
     private float _endValueStart = 240f;
 
@@ -37,9 +37,10 @@ public class MainMenuView : MonoBehaviour, IView
         
     }
 
-    public void Init(UnityAction startGame)
+    public void Init(UnityAction startGame, UnityAction openRewards)
     {
         _buttonStart.onClick.AddListener(startGame);
+        _buttonRewards.onClick.AddListener(openRewards);
     }
 
     public void Show()
@@ -50,5 +51,6 @@ public class MainMenuView : MonoBehaviour, IView
     protected void OnDestroy()
     {
         _buttonStart.onClick.RemoveAllListeners();
+        _buttonRewards.onClick.RemoveAllListeners();
     }
 }

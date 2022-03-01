@@ -1,4 +1,5 @@
 ﻿using Profile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class MainController : BaseController
     private ShedController _shedController;
     private GameController _gameController;
     private InventoryController _inventoryController;
+    private DailyRewardController _dailyRewardController;
+    private WeeklyRewardController _weeklyRewardController;
     private readonly Transform _placeForUi;
     private readonly ProfilePlayer _profilePlayer;
     private readonly List<ItemConfig> _itemsConfig;
@@ -61,10 +64,44 @@ public class MainController : BaseController
                 _gameController = new GameController(_profilePlayer, _abilityItems, inventoryModel, _placeForUi);
                 _mainMenuController?.Dispose();
                 break;
+            case GameState.None:
+                break;
+            case GameState.Fight:
+                break;
+            case GameState.Rewards:
+                _inventoryController?.Dispose();
+                _mainMenuController?.Dispose();
+                _dailyRewardController = DailyConfigureRewardController();
+                _weeklyRewardController = WeeklyConfigureRewardController();
+                break;
             default:
                 AllClear();
                 break;
         }
+    }
+
+    private WeeklyRewardController WeeklyConfigureRewardController()
+    {
+        var RewardView = ResourceLoader.LoadAndInstantiateView<RewardView>(new ResourcePath()
+        { PathResource = "Prefabs/DailyReward" }, _placeForUi);
+
+        var currencyWindow =
+            ResourceLoader.LoadAndInstantiateView<CurrencyWindow>(new ResourcePath()
+            { PathResource = "Prefabs/CurrencyWindow" }, _placeForUi);
+
+
+        return new WeeklyRewardController(RewardView, currencyWindow, _profilePlayer);
+    }
+
+    private DailyRewardController DailyConfigureRewardController()
+    {
+        var RewardView = ResourceLoader.LoadAndInstantiateView<RewardView>(new ResourcePath()
+        { PathResource = "Prefabs/DailyReward" }, _placeForUi);
+
+        var currencyWindow =
+            ResourceLoader.LoadAndInstantiateView<CurrencyWindow>(new ResourcePath()
+            { PathResource = "Prefabs/CurrencyWindow" }, _placeForUi);
+        return new DailyRewardController(RewardView, currencyWindow, _profilePlayer);
     }
 
     private void AllClear()

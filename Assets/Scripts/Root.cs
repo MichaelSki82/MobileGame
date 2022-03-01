@@ -7,11 +7,10 @@ using UnityEngine;
 
 public class Root : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private Transform _placeForUi;
 
     [SerializeField] private UnityAdsTools _ads;
-   //[SerializeField] private List<ItemConfig> _items;
     [SerializeField] private UpgradeItemConfigDataSource _upgradeSource;
     [SerializeField] private List<AbilityItemConfig> _abilityItems;
 

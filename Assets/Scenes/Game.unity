@@ -422,16 +422,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1980575205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2daee8eff28379d4daff2805b218db1d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ce9e0026946a441872931de94fb3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _placeForUi: {fileID: 1903552}
   _ads: {fileID: 1980575211}
-  _items:
-  - {fileID: 11400000, guid: c8d3e74aaf2447344bd5a345943e75eb, type: 2}
-  - {fileID: 11400000, guid: 0c5580639060c894899a8e4e57c3731b, type: 2}
-  - {fileID: 11400000, guid: 14a3c984e69e6504f801302ed22526ac, type: 2}
-  - {fileID: 11400000, guid: de729d0e456a1184ebe59c595784ae54, type: 2}
   _upgradeSource: {fileID: 11400000, guid: 4b0ac3781b2cd5f40bb67ec9c9e1cd6b, type: 2}
   _abilityItems:
   - {fileID: 11400000, guid: 09a823ea2315b9a4dbdad15bed5f3fed, type: 2}
