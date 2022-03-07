@@ -93,6 +93,7 @@ public class DailyRewardController:BaseController
     {
         _rewardView.GetRewardButtonDaily.onClick.AddListener(ClaimReward);
         _rewardView.ResetButton.onClick.AddListener(ResetReward);
+       // _rewardView.ExitButton.onClick.AddListener();
     }
 
     private void ResetReward()

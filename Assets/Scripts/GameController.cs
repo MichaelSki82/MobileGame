@@ -28,6 +28,19 @@ public class GameController : BaseController
         var abilitiesController = new AbilitiesController(carController, inventoryModel, abilityRepository, abilityView);
         AddController(abilitiesController);
 
+        var battleStartController = CreateBattleStartController(uiRoot, profilePlayer);
+        AddController(battleStartController);
+
+    }
+
+    private BattleStartController CreateBattleStartController(Transform uiRoot, ProfilePlayer model)
+    {
+        var startView =
+            ResourceLoader.LoadAndInstantiateView<BattleStartView>(
+                new ResourcePath() { PathResource = "Prefabs/BattleStart" }, uiRoot);
+        AddGameObjects(startView.gameObject);
+        return new BattleStartController(startView, model);
+
     }
 }
 

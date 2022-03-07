@@ -11,24 +11,32 @@ public class PrefsSubscriptionProperty<T> : SubscriptionProperty<T>
         {
             _key = key;
             _converter = converter;
-            //LoadData(_key);
+            LoadData(_key);
             SubscribeOnChange(SaveData);
         }
 
-        //private void LoadData(string key)
-        //{
-        //    if (PlayerPrefs.HasKey(key))
-        //    {
-        //        var str = PlayerPrefs.GetString(key);
-        //        Value = _converter(str);
-        //    }
-        //    else
-        //    {
-        //        Value = default;
-        //    }
-        //}
+    private void LoadData(string key)
+    {
+        if (PlayerPrefs.HasKey(key))
+        {
+            var str = PlayerPrefs.GetString(key);
+            if (String.IsNullOrEmpty(str))
+            {
+                Value = default;
+            }
+            else
+            {
+                Value = _converter(str);
 
-        private void SaveData(T obj)
+            }
+        }
+        else
+        {
+            Value = default;
+        }
+    }
+
+    private void SaveData(T obj)
         {
             PlayerPrefs.SetString(_key, obj.ToString());
         }

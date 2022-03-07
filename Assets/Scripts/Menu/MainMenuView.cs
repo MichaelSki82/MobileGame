@@ -16,9 +16,9 @@ public class MainMenuView : MonoBehaviour, IView
     private float _durationPanel= 3f;
     private float _durationButton = 6f;
     private float  _endValuePanel = 0f;
-    private float _endValueRewards = 368f;
-    private float _endValueExit = 175f;
-    private float _endValueStart = 240f;
+    private float _endValueRewards = 0f;
+    private float _endValueExit = 150f;
+    private float _endValueStart = 250f;
 
     
 
@@ -26,9 +26,13 @@ public class MainMenuView : MonoBehaviour, IView
     {
                 
         _panelMenu.DOAnchorPosX(_endValuePanel, _durationPanel);
-        _buttonRewards.transform.DOMoveX(_endValueRewards, _durationButton);
-        _buttonExit.transform.DOMoveY(_endValueExit, _durationButton);
-        _buttonStart.transform.DOMoveY(_endValueStart, _durationButton);
+       // _buttonRewards.transform.DOMoveX(_endValueRewards, _durationButton);
+        
+        _buttonRewards.gameObject.GetComponent<RectTransform>().DOAnchorPosX(_endValueRewards, _durationButton);
+
+        //_buttonExit.transform.DOMoveY(_endValueExit, _durationButton);
+        _buttonExit.gameObject.GetComponent<RectTransform>().DOMoveY(_endValueExit, _durationButton);
+        _buttonStart.gameObject.GetComponent<RectTransform>().DOMoveY(_endValueStart, _durationButton);
 
     }
 

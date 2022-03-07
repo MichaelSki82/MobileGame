@@ -12,6 +12,7 @@ public class MainController : BaseController
     private InventoryController _inventoryController;
     private DailyRewardController _dailyRewardController;
     private WeeklyRewardController _weeklyRewardController;
+    private FightController _fighttController;
     private readonly Transform _placeForUi;
     private readonly ProfilePlayer _profilePlayer;
     private readonly List<ItemConfig> _itemsConfig;
@@ -67,12 +68,16 @@ public class MainController : BaseController
             case GameState.None:
                 break;
             case GameState.Fight:
+                _inventoryController?.Dispose();
+                _gameController?.Dispose();
+                _fighttController = CreateFightController();
                 break;
             case GameState.Rewards:
                 _inventoryController?.Dispose();
                 _mainMenuController?.Dispose();
                 _dailyRewardController = DailyConfigureRewardController();
-                _weeklyRewardController = WeeklyConfigureRewardController();
+                //_weeklyRewardController = WeeklyConfigureRewardController();
+                
                 break;
             default:
                 AllClear();
@@ -80,18 +85,27 @@ public class MainController : BaseController
         }
     }
 
-    private WeeklyRewardController WeeklyConfigureRewardController()
+    private FightController CreateFightController()
     {
-        var RewardView = ResourceLoader.LoadAndInstantiateView<RewardView>(new ResourcePath()
-        { PathResource = "Prefabs/DailyReward" }, _placeForUi);
+        var fightView = ResourceLoader.LoadAndInstantiateView<FightWindowView>(new ResourcePath()
+        { PathResource = "Prefabs/FightView" }, _placeForUi);
 
-        var currencyWindow =
-            ResourceLoader.LoadAndInstantiateView<CurrencyWindow>(new ResourcePath()
-            { PathResource = "Prefabs/CurrencyWindow" }, _placeForUi);
+        return new FightController(fightView,  _profilePlayer);
 
-
-        return new WeeklyRewardController(RewardView, currencyWindow, _profilePlayer);
     }
+
+    //private WeeklyRewardController WeeklyConfigureRewardController()
+    //{
+    //    var RewardView = ResourceLoader.LoadAndInstantiateView<RewardView>(new ResourcePath()
+    //    { PathResource = "Prefabs/DailyReward" }, _placeForUi);
+
+    //    var currencyWindow =
+    //        ResourceLoader.LoadAndInstantiateView<CurrencyWindow>(new ResourcePath()
+    //        { PathResource = "Prefabs/Currency Window" }, _placeForUi);
+
+
+    //    return new WeeklyRewardController(RewardView, currencyWindow, _profilePlayer);
+    //}
 
     private DailyRewardController DailyConfigureRewardController()
     {
@@ -100,7 +114,7 @@ public class MainController : BaseController
 
         var currencyWindow =
             ResourceLoader.LoadAndInstantiateView<CurrencyWindow>(new ResourcePath()
-            { PathResource = "Prefabs/CurrencyWindow" }, _placeForUi);
+            { PathResource = "Prefabs/Currency Window" }, _placeForUi);
         return new DailyRewardController(RewardView, currencyWindow, _profilePlayer);
     }
 
